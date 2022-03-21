@@ -15,11 +15,14 @@ function App() {
     let cancel
     axios.get(currentPage, {
       cancelToken: new axios.CancelToken(c => cancel = c)
-    }).then(res => {
+    })
+    // .then(res => console.log(res))
+    .then(res => {
+      console.log(res)
       setLoading(false)
       setNextPage(res.data.next)
       setPrevPage(res.data.previous)
-      setPokemon(res.data.results.map(p => p.name))
+      setPokemon(res.data.results)
     })
 
     return () => cancel()
