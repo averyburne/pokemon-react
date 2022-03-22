@@ -3,8 +3,7 @@ import axios from 'axios'
 
 export default function Pokemon({ pokemon }) {
     const [sprites, setSprites] = useState([])
-    const pics = []
-    console.log(sprites)
+    console.log(pokemon)
     
     // axios.get(pokemon[0].url)
     //     .then(res => setSprites(res.data.sprites.front_shiny))
@@ -14,20 +13,19 @@ export default function Pokemon({ pokemon }) {
             // console.log(p.url)
             //   <div key={p.name}>{p.url}</div>
             axios.get(p.url)
-                .then(res => setSprites([...sprites, res.data.sprites.front_shiny]))
+                .then(res => setSprites(prevSprites => [...prevSprites, res.data.sprites.front_shiny]))
                 // .then(console.log(...sprites))
           ))
-    }, [])
+    }, [pokemon])
 
-
-    //   console.log(...sprites)
-    //   console.log(pics[0])
+    const pokeJSX = sprites.map(s => {
+        return (
+            <img src={s} key={s} alt='poke pic'/>
+        )
+    })
     return (
-        <img src={sprites[0]} alt='pokepic'/>
-        // <div>
-        //     {pics.map(s => {
-        //         <img src={s} alt='poke pic'/>
-        //     })}
-        // </div>
+        <div>
+            {pokeJSX}
+        </div>
     )
 }
