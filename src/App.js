@@ -38,9 +38,10 @@ function App() {
 
   if (loading) return "Loading..."
 
+  console.log(pokemon)
   return (
     <>
-      <Pokemon pokemon={pokemon}/>
+      <Pokemon pokemon={pokemon} setPokemon={setPokemon}/>
       <Pagination 
       goToNextPage={nextPage ? goToNextPage: null}
       goToPrevPage={prevPage ? goToPrevPage : null}
