@@ -19,9 +19,9 @@ export default function Pokemon({ pokemon, setPokemon }) {
     //       ))
     // }, [pokemon])
 
-    useEffect(() => {
-        setPokemon(0)
-    }, [pokemon])
+    // useEffect(() => {
+    //     setPokemon(0)
+    // }, [pokemon])
 
     // useEffect(() => {
     //     pokeJSX = pokemon.map((p,i) => {
@@ -39,9 +39,10 @@ export default function Pokemon({ pokemon, setPokemon }) {
     // }, [])
 
     console.log(pokeJSX)
+    console.log(pokemon)
     pokeJSX = pokemon.map((p,i) => {
         let newArr = [...pokemon]
-        axios.get(p.url)
+        axios.get('https://pokeapi.co/api/v2/pokemon/1/')
             // .then(res => newArr[i] = {name: p.name, data: res.data})
             .then(setPokemon(newArr))
             // .then(console.log(pokemon))

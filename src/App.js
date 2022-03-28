@@ -22,11 +22,21 @@ function App() {
       setLoading(false)
       setNextPage(res.data.next)
       setPrevPage(res.data.previous)
-      setPokemon(res.data.results)
+      setPokemon(prevPokemon => prevPokemon = res.data.results)
+      console.log(pokemon)
+    })
+    .then(() => {
+      console.log(pokemon)
+      pokemon.forEach(pokemon => {
+        axios.get(pokemon.url)
+          .then(res => console.log(res))
+      })
     })
 
     return () => cancel()
   }, [currentPage])
+
+  console.log(pokemon)
 
   function goToNextPage() {
     setCurrentPage(nextPage)
@@ -38,10 +48,10 @@ function App() {
 
   if (loading) return "Loading..."
 
-  console.log(pokemon)
+  // console.log(pokemon)
   return (
     <>
-      <Pokemon pokemon={pokemon} setPokemon={setPokemon}/>
+      {/* <Pokemon pokemon={pokemon} setPokemon={setPokemon}/> */}
       <Pagination 
       goToNextPage={nextPage ? goToNextPage: null}
       goToPrevPage={prevPage ? goToPrevPage : null}
